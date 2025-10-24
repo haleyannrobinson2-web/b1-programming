@@ -10,4 +10,3 @@ print("Your profit is " + str(profit))
 
 margin = profit / revenue *100
 print("Your profit margin is ", margin,"%")
-
