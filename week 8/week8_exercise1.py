@@ -1,17 +1,14 @@
-#Secure User Auth. System
-
-
 import hashlib
 import logging
 
-
+# Configure Logging
 logging.basicConfig(
     filename="auth.log",
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
-
+# User Class
 class User:
     MAX_FAILED_ATTEMPTS = 3
 
@@ -22,11 +19,13 @@ class User:
         self.__failed_attempts = 0
         self.__is_locked = False
 
-    
+    # Private Password Hasher
     def __hash_password(self, password):
         return hashlib.sha256(password.encode()).hexdigest()
 
-    
+    # -------------------------
+    # Username Setter (Validation)
+    # -------------------------
     def set_username(self, username):
         if not username or len(username) < 3:
             raise ValueError("Username must be at least 3 characters long.")
@@ -35,7 +34,7 @@ class User:
     def get_username(self):
         return self.__username
 
-   
+    # Privilege Setter (Validation)
     def set_privilege(self, privilege):
         allowed_roles = ["user", "admin"]
         if privilege not in allowed_roles:
@@ -45,7 +44,7 @@ class User:
     def get_privilege(self):
         return self.__privilege
 
-   
+    # Authentication Method
     def authenticate(self, password):
         if self.__is_locked:
             logging.warning(f"Locked account login attempt: {self.__username}")
@@ -65,7 +64,7 @@ class User:
 
             return False
 
- 
+    # Safe User Info Display
     def display_info(self):
         return {
             "username": self.__username,
@@ -73,12 +72,12 @@ class User:
             "account_locked": self.__is_locked
         }
 
-   
+    # Prevent Direct Password Access
     @property
     def password(self):
         raise AttributeError("Password is private and cannot be accessed directly.")
 
-   
+    # Unlock with Validation
     def unlock_account(self, admin_user):
         if admin_user.get_privilege() == "admin":
             self.__failed_attempts = 0
@@ -88,7 +87,7 @@ class User:
             logging.warning(f"Unauthorized unlock attempt by: {admin_user.get_username()}")
             raise PermissionError("Only admin users can unlock accounts.")
 
-
+# Demo Section
 if __name__ == "__main__":
 
     # Creating multiple users
