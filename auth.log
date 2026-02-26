@@ -1,0 +1,9 @@
+2026-02-26 20:34:03,291 - INFO - Successful login: johnDoe
+2026-02-26 20:34:03,291 - WARNING - Failed login attempt 1 for johnDoe
+2026-02-26 20:34:03,291 - WARNING - Failed login attempt 2 for johnDoe
+2026-02-26 20:34:03,291 - WARNING - Failed login attempt 3 for johnDoe
+2026-02-26 20:34:03,291 - CRITICAL - Account locked: johnDoe
+2026-02-26 20:34:03,291 - WARNING - Locked account login attempt: johnDoe
+2026-02-26 20:34:03,291 - INFO - Successful login: adminUser
+2026-02-26 20:34:03,291 - INFO - Account unlocked by admin: adminUser
+2026-02-26 20:34:03,291 - INFO - Successful login: johnDoe

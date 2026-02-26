@@ -1,22 +1,20 @@
+
+# Advanced Server Log Analyzer
+
+
 import re
 import logging
 from collections import defaultdict
 from datetime import datetime
 
-# -----------------------
-# Configure logging
-# -----------------------
+
 logging.basicConfig(
     filename=f"server_analyzer_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log",
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 
-# -----------------------
-# Regex for Apache log parsing
-# Example log line:
-# 127.0.0.1 - - [26/Feb/2026:10:23:45 +0000] "GET /index.html HTTP/1.1" 200 1024 "User-Agent"
-# -----------------------
+
 log_pattern = re.compile(
     r'(?P<ip>\S+) \S+ \S+ \[(?P<timestamp>[^\]]+)\] '
     r'"(?P<method>\S+) (?P<url>\S+) \S+" '
@@ -24,19 +22,13 @@ log_pattern = re.compile(
     r'"(?P<user_agent>[^"]+)"'
 )
 
-# -----------------------
-# Data structures
-# -----------------------
+
 error_logs = []  # store 4xx and 5xx logs
 security_incidents = []  # failed logins, suspicious user agents
 failed_auth_attempts = defaultdict(int)  # track failed logins per IP
 
-# List of suspicious user agents (example)
 suspicious_agents = ['sqlmap', 'nikto', 'fuzzer', 'acunetix']
 
-# -----------------------
-# Analyze logs
-# -----------------------
 def analyze_log_file(log_file):
     try:
         with open(log_file, 'r') as f:
@@ -106,8 +98,6 @@ def analyze_log_file(log_file):
         logging.error(f"Unexpected error: {e}")
         print(f"Error: {e}")
 
-# -----------------------
-# Main execution
-# -----------------------
+
 if __name__ == "__main__":
     analyze_log_file('access.log')  # replace with your log filename

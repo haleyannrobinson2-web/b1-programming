@@ -1,8 +1,5 @@
-# Product Pricing Manager (Polished Version)
+# Product Pricing Manager
 
-# -----------------------
-# Define discounts
-# -----------------------
 category_discounts = {
     'Electronics': 0.10,
     'Clothing': 0.15,
@@ -16,13 +13,11 @@ tier_discounts = {
     'Budget': 0.02
 }
 
-# -----------------------
-# Initialize data structures
-# -----------------------
+
 products = []  # List to store product info and calculated prices
 total_discount_percentages = []  # For calculating average discount
 
-# Hardcoded product data (you can later replace this with file input)
+# Hardcoded product data 
 products_data = [
     "Computer,999.99,Electronics,Premium",
     "Jacket,129.99,Clothing,Standard",
@@ -31,9 +26,7 @@ products_data = [
     "Apple Headphones,199.99,Electronics,Premium"
 ]
 
-# -----------------------
-# Process product data
-# -----------------------
+
 for line_num, line in enumerate(products_data, start=1):
     try:
         name, base_price_str, category, tier = line.split(',')
@@ -62,9 +55,7 @@ for line_num, line in enumerate(products_data, start=1):
     except ValueError:
         print(f"Line {line_num}: Invalid format or price '{line}' skipped.")
 
-# -----------------------
-# Write pricing report
-# -----------------------
+
 try:
     with open('pricing_report.txt', 'w') as report:
         # Report Header
@@ -86,9 +77,7 @@ except IOError:
     print("Error: Could not write to 'pricing_report.txt'.")
     exit(1)
 
-# -----------------------
-# Console summary
-# -----------------------
+
 if products:
     total_products = len(products)
     avg_discount = sum(total_discount_percentages) / total_products
