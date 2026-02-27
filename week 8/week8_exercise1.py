@@ -1,3 +1,6 @@
+# Secure user authentication system
+
+
 import hashlib
 import logging
 
