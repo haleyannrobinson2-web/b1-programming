@@ -1,3 +1,6 @@
+# EU Capitals Weather
+# Data Collection
+
 import requests
 import json
 import time
