@@ -1,3 +1,5 @@
+# Failed login detector
+
 login_attempts = [
 ("alice", "success"),
 ("bob", "failed"),

@@ -1,3 +1,5 @@
+# password policy validator
+
 passwords = [ "Pass123",
 "SecurePassword1", "weak",
 "MyP@ssw0rd", "NOLOWER123"]
